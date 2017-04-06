@@ -14,6 +14,7 @@ public class ResponseUtil {
     public static String urlEncode(String fileName) {
         // Java標準では、半角スペースが+にエンコードされる
         // String encodeFileName = URLEncoder.encode(fileName, "UTF-8");
+        // Commons Codecでは、半角スペースが+に、+が%2Bにエンコードされる
         URLCodec codec = new URLCodec("UTF-8");
         String encodeFileName = "";
         try {
