@@ -25,6 +25,7 @@ public class ResponseUtil {
         return encodeFileName.replaceAll("\\+", "%20").replaceAll("%2B", "+");
     }
 
+    // ①
     public static void download1(File file, HttpServletResponse response) throws IOException {
         String fileName = file.getName();
         String encodeFileName = urlEncode(fileName);
@@ -35,6 +36,7 @@ public class ResponseUtil {
         IoUtil.copy(new FileInputStream(file), response.getOutputStream());
     }
 
+    // ②
     public static void download2(File file, HttpServletResponse response) throws IOException {
         String fileName = file.getName();
         String encodeFileName = urlEncode(fileName);
@@ -46,6 +48,7 @@ public class ResponseUtil {
         IoUtil.copy(new FileInputStream(file), response.getOutputStream());
     }
 
+    // ③
     public static void download3(File file, HttpServletResponse response) throws IOException {
         String fileName = file.getName();
 
@@ -56,6 +59,7 @@ public class ResponseUtil {
         IoUtil.copy(new FileInputStream(file), response.getOutputStream());
     }
 
+    // ④
     public static void download4(File file, HttpServletResponse response) throws IOException {
         String fileName = file.getName();
 
