@@ -41,6 +41,7 @@ public class ResponseUtil {
 
         response.setContentType("application/octet-stream");
         response.setContentLength((int) file.length());
+        // RFC6266
         response.setHeader("Content-Disposition", "attachment; filename*=utf-8''" + encodeFileName);
         IoUtil.copy(new FileInputStream(file), response.getOutputStream());
     }
