@@ -26,7 +26,7 @@ public class ResponseUtil {
         return encodeFileName.replaceAll("\\+", "%20").replaceAll("%2B", "+");
     }
 
-    // ①
+    // ①URLエンコードのみ
     public static void download1(File file, HttpServletResponse response) throws IOException {
         String fileName = file.getName();
         String encodeFileName = urlEncode(fileName);
@@ -37,19 +37,18 @@ public class ResponseUtil {
         IoUtil.copy(new FileInputStream(file), response.getOutputStream());
     }
 
-    // ②
+    // ②RFC6266
     public static void download2(File file, HttpServletResponse response) throws IOException {
         String fileName = file.getName();
         String encodeFileName = urlEncode(fileName);
 
         response.setContentType("application/octet-stream");
         response.setContentLength((int) file.length());
-        // RFC6266
         response.setHeader("Content-Disposition", "attachment; filename*=utf-8''" + encodeFileName);
         IoUtil.copy(new FileInputStream(file), response.getOutputStream());
     }
 
-    // ③
+    // ③MIME B
     public static void download3(File file, HttpServletResponse response) throws IOException {
         String fileName = file.getName();
 
@@ -60,7 +59,7 @@ public class ResponseUtil {
         IoUtil.copy(new FileInputStream(file), response.getOutputStream());
     }
 
-    // ④
+    // ④ISO-8859-1によるエンコード
     public static void download4(File file, HttpServletResponse response) throws IOException {
         String fileName = file.getName();
 
